@@ -20,19 +20,20 @@ import PathKit
 
 public class StencilTemplateEngine: TemplateEngine {
     public var fileExtension: String { return "stencil" }
-    private let namespace: Namespace
+    private let `extension`: Extension
 
-    public init(namespace: Namespace = Namespace()) {
-        self.namespace = namespace
+    public init(extension: Extension = Extension()) {
+        self.`extension` = `extension`
     }
 
     public func render(filePath: String, context: [String: Any]) throws -> String {
         let templatePath = Path(filePath)
         let templateDirectory = templatePath.parent()
-        let template = try Template(path: templatePath)
+        
         let loader = FileSystemLoader(paths: [templateDirectory])
+        let environment = Environment(loader: loader, extensions: [`extension`])
         var context = context
         context["loader"] = loader
-        return try template.render(Context(dictionary: context, namespace: namespace))
+        return try environment.renderTemplate(name: templatePath.lastComponent,  context: context)
     }
 }
