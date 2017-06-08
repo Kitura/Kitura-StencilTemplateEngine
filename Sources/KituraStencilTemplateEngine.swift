@@ -18,22 +18,38 @@ import KituraTemplateEngine
 import Stencil
 import PathKit
 
+public enum StencilTemplateEngineError: Swift.Error {
+       case rootPathsEmpty
+       case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
+}
+
 public class StencilTemplateEngine: TemplateEngine {
     public var fileExtension: String { return "stencil" }
     private let `extension`: Extension
+    private var rootPaths: [Path] = []
 
     public init(extension: Extension = Extension()) {
         self.`extension` = `extension`
     }
 
+    public func setRootPaths(rootPaths: [String]) {
+        self.rootPaths = rootPaths.map { Path($0) }
+    }
+
     public func render(filePath: String, context: [String: Any]) throws -> String {
-        let templatePath = Path(filePath)
-        let templateDirectory = templatePath.parent()
-        
-        let loader = FileSystemLoader(paths: [templateDirectory])
+        throw StencilTemplateEngineError.deprecatedRenderMethodCalled
+    }
+
+    public func render(filePath: String, context: [String: Any], options: RenderingOptions,
+                       templateName: String) throws -> String {
+        if rootPaths.isEmpty {
+            throw StencilTemplateEngineError.rootPathsEmpty
+        }
+
+        let loader = FileSystemLoader(paths: rootPaths)
         let environment = Environment(loader: loader, extensions: [`extension`])
         var context = context
         context["loader"] = loader
-        return try environment.renderTemplate(name: templatePath.lastComponent,  context: context)
+        return try environment.renderTemplate(name: templateName,  context: context)
     }
 }
