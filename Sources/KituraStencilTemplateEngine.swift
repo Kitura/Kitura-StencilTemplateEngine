@@ -1,5 +1,5 @@
 /**
- * Copyright IBM Corporation 2015
+ * Copyright IBM Corporation 2015, 2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@ import Stencil
 import PathKit
 
 public enum StencilTemplateEngineError: Swift.Error {
-       case rootPathsEmpty
-       case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
+    case rootPathsEmpty
+    case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
 }
 
 public class StencilTemplateEngine: TemplateEngine {
-    public var fileExtension: String { return "stencil" }
+    public let fileExtension = "stencil"
     private let `extension`: Extension
     private var rootPaths: [Path] = []
 
