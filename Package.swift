@@ -1,5 +1,5 @@
 /**
- * Copyright IBM Corporation 2016
+ * Copyright IBM Corporation 2016, 2017
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,5 +18,8 @@ import PackageDescription
 
 let package = Package(
     name: "KituraStencil",
-    dependencies: [.Package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", majorVersion: 1, minor: 7),
-                   .Package(url: "https://github.com/kylef/Stencil", majorVersion: 0, minor: 9)])
+    dependencies: [
+        .Package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", majorVersion: 1, minor: 7),
+        .Package(url: "https://github.com/kylef/Stencil", majorVersion: 0, minor: 9)
+    ]
+)

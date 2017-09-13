@@ -2,3 +2,5 @@
 .vagrant
 Packages
 *.pkg
+*.xcodeproj
+Package.resolved
