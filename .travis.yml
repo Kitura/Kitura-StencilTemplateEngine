@@ -16,7 +16,7 @@ matrix:
     - os: osx
       osx_image: xcode9
       sudo: required
-    - os: linus
+    - os: linux
       dist: trusty
       sudo: required
       env: SWIFT_SNAPSHOT=4.0
