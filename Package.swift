@@ -20,6 +20,6 @@ let package = Package(
     name: "KituraStencil",
     dependencies: [
         .Package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", majorVersion: 1, minor: 7),
-        .Package(url: "https://github.com/kylef/Stencil", majorVersion: 0, minor: 10)
+        .Package(url: "https://github.com/kylef/Stencil.git", majorVersion: 0, minor: 10)
     ]
 )
