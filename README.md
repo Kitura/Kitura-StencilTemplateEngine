@@ -24,14 +24,14 @@
 Stencil template engine plugin
 
 ## Summary
-Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://github.com/IBM-Swift/Kitura-TemplateEngine.git) for using [Stencil](https://github.com/kylef/Stencil) with the `Kitura` server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.
+Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://github.com/IBM-Swift/Kitura-TemplateEngine.git) for using [Stencil](https://github.com/kylef/Stencil) with the [Kitura](https://github.com/IBM-Swift/Kitura) server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.
 
 ## Stencil Template File
 The template file is basically HTML with gaps where we can insert code and variables. [Stencil](https://github.com/kylef/Stencil) is a templating language used to write a template file and Kitura-StencilTemplateEngine can use any standard Stencil template.
 
-The [Stencil user guide](https://stencil.fuller.li/en/latest/) provides documentation and examples on writting a Stencil Template File.
+The [Stencil user guide](https://stencil.fuller.li/en/latest/) provides documentation and examples on writing a Stencil Template File.
 
-By default the Kitura Router will look in the 'Views' folder for Stencil template files with the extention '.stencil'.
+By default the Kitura Router will look in the 'Views' folder for Stencil template files with the extension '.stencil'.
 
 
 ## Example
@@ -43,10 +43,10 @@ After `Kitura init` the files we are interested in will have the following struc
 ServerRepository
 ├── Package.swift
 ├── Sources
-│       └── Application
-│                  └── Application.swift
+│    └── Application
+│         └── Application.swift
 └── Views
-           └── Example.stencil
+     └── Example.stencil
 </pre>
 
 ### Package.swift
@@ -65,7 +65,8 @@ Inside the `postInit()` function:
 ```swift
 router.add(templateEngine: StencilTemplateEngine())
 router.get("/articles") { request, response, next in
-var context: [String: [[String:Any]]] = [
+var context: [String: [[String:Any]]] =
+    [
         "articles": [
             ["title" : "Using Stencil with Swift", "author" : "IBM Swift"],
             ["title" : "Server-Side Swift with Kitura", "author" : "Kitura"],
@@ -82,11 +83,11 @@ The following template will insert the number of articles followed by a list of 
 
 ```
 <html>
-There are {{ articles.count }} articles. <br />
+    There are {{ articles.count }} articles. <br />
 
-{% for article in articles %}
-    - {{ article.title }} written by {{ article.author }}. <br />
-{% endfor %}
+    {% for article in articles %}
+        - {{ article.title }} written by {{ article.author }}. <br />
+    {% endfor %}
 </html>
 ```
 
