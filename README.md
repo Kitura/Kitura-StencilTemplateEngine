@@ -33,24 +33,64 @@ The [Stencil user guide](https://stencil.fuller.li/en/latest/) provides document
 
 By default the Kitura Router will look in the 'Views' folder for Stencil template files with the extention '.stencil'.
 
-## Rendering the Template File
 
-Within the Kitura server, 'Kitura-StencilTemplateEngine' is referenced through the [Kitura Template Engine](https://github.com/IBM-Swift/Kitura-TemplateEngine.git). The examples below are taken from the Kitura Template Engine api and so would work for any supported template engine.
+## Example
+The following is an example of a server generated using `Kitura init` that serves Stencil-formatted text from a `.stencil` file.
 
-The following code initializes a Stencil template engine and adds it to the [Kitura](https://github.com/IBM-Swift/Kitura) router.
+After `Kitura init` the files we are interested in will have the following structure:
+
+<pre>
+ServerRepository
+├── Package.swift
+├── Sources
+│       └── Application
+│                  └── Application.swift
+└── Views
+           └── Example.stencil
+</pre>
+
+### Package.swift
+"https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git" is defined as a dependency
+"KituraStencil" added to the targets for Application
+
+### Application.swift
+Inside the Application.swift file, the following code is added to render and serve the "Example.stencil" template to the route "/articles"
+
 ```swift
-router.add(templateEngine: StencilTemplateEngine())
+import KituraStencil
 ```
 
-The following example will render the Stencil template "example.stencil" and add it to our routers response. The context variable must be valid JSON format and allows you to pass variables through to the template engine.
+Inside the `postInit()` function:
 
 ```swift
-router.get("/example") { request, response, next in
-    var context: [String: Any] = ["key" : "value"]
-    try response.render("example.stencil", context: context).end()
+router.add(templateEngine: StencilTemplateEngine())
+router.get("/articles") { request, response, next in
+var context: [String: [[String:Any]]] = [
+        "articles": [
+            ["title" : "Using Stencil with Swift", "author" : "IBM Swift"],
+            ["title" : "Server-Side Swift with Kitura", "author" : "Kitura"],
+        ]
+    ]
+    try response.render("Example.stencil", context: context).end()
+    response.status(.OK)
     next()
 }
 ```
+
+### Example.stencil
+The following template will insert the number of articles followed by a list of the articles and their authors.
+
+```
+<html>
+There are {{ articles.count }} articles. <br />
+
+{% for article in articles %}
+    - {{ article.title }} written by {{ article.author }}. <br />
+{% endfor %}
+</html>
+```
+
+When the server is running, go to [http://localhost:8080/articles](http://localhost:8080/articles) to view the rendered Stencil template.
 
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE.txt).
