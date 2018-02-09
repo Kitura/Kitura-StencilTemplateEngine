@@ -50,11 +50,11 @@ The files which have been edited in this example, are structured as follows:
      └── Example.stencil
 </pre>
 
-The `Views` Folder and `Example.stencil` file and so have been created for this example, since they are not initialized by `Kitura init`.
+The `Views` Folder and `Example.stencil` file will be created later on in this example, since they are not initialized by `Kitura init`.
 
 #### Package.swift
-["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) is defined as a dependency
-"KituraStencil" added to the targets for Application
+defined ["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) as a dependency.
+add "KituraStencil" to the targets for Application.
 
 #### Application.swift
 Inside the `Application.swift` file, add the following code to render the `Example.stencil` template file on the "/articles" route.
@@ -94,7 +94,7 @@ Create the `Views` folder and put the following Stencil template code into a fil
 </html>
 ```
 
-Run the application and once the server is running, go to [http://localhost:8080/articles](http://localhost:8080/articles)  to view the rendered Stencil template.
+Run the application and once the server is running, go to [http://localhost:8080/articles](http://localhost:8080/articles) to view the rendered Stencil template.
 
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE.txt).
