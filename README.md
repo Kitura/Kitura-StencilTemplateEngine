@@ -53,8 +53,9 @@ The files which have been edited in this example, are structured as follows:
 The `Views` Folder and `Example.stencil` file will be created later on in this example, since they are not initialized by `Kitura init`.
 
 #### Package.swift
-defined ["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) as a dependency.
-add "KituraStencil" to the targets for Application.
+Define ["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) as a dependency.
+
+Add "KituraStencil" to the targets for Application.
 
 #### Application.swift
 Inside the `Application.swift` file, add the following code to render the `Example.stencil` template file on the "/articles" route.
