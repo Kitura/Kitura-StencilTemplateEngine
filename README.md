@@ -76,7 +76,7 @@ var context: [String: [[String:Any]]] =
             ["title" : "Server-Side Swift with Kitura", "author" : "Kitura"],
         ]
     ]
-    try response.render("Example.stencil", context: context).end()
+    try response.render("Example.stencil", context: context)
     response.status(.OK)
     next()
 }
