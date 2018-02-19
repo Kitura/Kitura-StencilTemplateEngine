@@ -21,7 +21,7 @@
 </p>
 
 # Kitura-StencilTemplateEngine
-A Templating engine for Kitura that uses Stencil-based templates.
+A templating engine for Kitura that uses Stencil-based templates.
 
 
 ## Summary
@@ -30,18 +30,18 @@ Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://gi
 ## Stencil Template File
 The template file is basically HTML with gaps where we can insert code and variables. [Stencil](https://github.com/kylef/Stencil) is a templating language used to write a template file and Kitura-StencilTemplateEngine can use any standard Stencil template.
 
-The [Stencil user guide](https://stencil.fuller.li/en/latest/) provides documentation and examples on writing a Stencil Template File.
+The [Stencil user guide](https://stencil.fuller.li/en/latest/) provides documentation and examples on how to write a Stencil template File.
 
-The Kitura router, by default, will look in the 'Views' folder for Stencil template files, that is files with the extension '.stencil'.
+The Kitura router, by default, will look in the `Views` folder for Stencil template files, that is files with the extension `.stencil`.
 
 
 ## Example
-The following is an example of a server generated using `kitura init` that serves Stencil-formatted text from a `.stencil` file.
+The following example takes a server generated using `kitura init` and modifies it to serve Stencil-formatted text from a `.stencil` file.
 
-The files which have been edited in this example, are structured as follows:
+The files which will be edited in this example, are structured as follows:
 
 <pre>
-<ServerRepository>
+&lt;ServerRepositoryName&gt;
 ├── Package.swift
 ├── Sources
 │    └── Application
@@ -50,12 +50,11 @@ The files which have been edited in this example, are structured as follows:
      └── Example.stencil
 </pre>
 
-The `Views` Folder and `Example.stencil` file will be created later on in this example, since they are not initialized by `Kitura init`.
+The `Views` folder and `Example.stencil` file will be created later on in this example, since they are not initialized by `kitura init`.
 
 #### Package.swift
-Define ["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) as a dependency.
-
-Add "KituraStencil" to the targets for Application.
+* Define ["https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git) as a dependency.
+* Add "KituraStencil" to the targets for Application.
 
 #### Application.swift
 Inside the `Application.swift` file, add the following code to render the `Example.stencil` template file on the "/articles" route.
@@ -83,7 +82,7 @@ var context: [String: [[String:Any]]] =
 ```
 
 #### Example.stencil
-Create the `Views` folder and put the following Stencil template code into a file called `Example.stencil` in this directory. This template will insert a count of the number of articles followed by a list of the articles and their authors.
+Create the `Views` folder and put the following Stencil template code into a file called `Example.stencil`:
 
 ```
 <html>
@@ -94,9 +93,9 @@ Create the `Views` folder and put the following Stencil template code into a fil
     {% endfor %}
 </html>
 ```
+This example is adapted from the [Stencil user guide](https://stencil.fuller.li/en/latest/) code. It will display the number of articles followed by a list of the articles and their authors.
 
 Run the application and once the server is running, go to [http://localhost:8080/articles](http://localhost:8080/articles) to view the rendered Stencil template.
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE.txt).
-
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt).
