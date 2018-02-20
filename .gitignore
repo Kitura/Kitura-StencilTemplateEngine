@@ -1,5 +1,6 @@
 .build
 .vagrant
+.DS_Store
 Packages
 *.pkg
 *.xcodeproj
