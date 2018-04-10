@@ -17,10 +17,13 @@
 import KituraTemplateEngine
 import Stencil
 import PathKit
+import Foundation
 
 public enum StencilTemplateEngineError: Swift.Error {
     case rootPathsEmpty
     case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
+    case unableToCastJSONToDict
+    case unableToEncodeValue(value: Encodable)
 }
 
 public class StencilTemplateEngine: TemplateEngine {
@@ -39,7 +42,7 @@ public class StencilTemplateEngine: TemplateEngine {
     public func render(filePath: String, context: [String: Any]) throws -> String {
         throw StencilTemplateEngineError.deprecatedRenderMethodCalled
     }
-
+    
     public func render(filePath: String, context: [String: Any], options: RenderingOptions,
                        templateName: String) throws -> String {
         if rootPaths.isEmpty {
@@ -51,5 +54,33 @@ public class StencilTemplateEngine: TemplateEngine {
         var context = context
         context["loader"] = loader
         return try environment.renderTemplate(name: templateName,  context: context)
+    }
+
+    public func render<T: Encodable>(filePath: String, with value: T, forKey key: String?,
+                                   options: RenderingOptions, templateName: String) throws -> String {
+        if rootPaths.isEmpty {
+            throw StencilTemplateEngineError.rootPathsEmpty
+        }
+        
+        let loader = FileSystemLoader(paths: rootPaths)
+        let environment = Environment(loader: loader, extensions: [`extension`])
+        
+        if let contextKey = key {
+            return try environment.renderTemplate(name: templateName, context: [contextKey: value])
+        }
+        
+        var data = Data()
+        
+        do {
+            data = try JSONEncoder().encode(value)
+        } catch {
+            throw StencilTemplateEngineError.unableToEncodeValue(value: value)
+        }
+        
+        guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+            throw StencilTemplateEngineError.unableToCastJSONToDict
+        }
+        
+        return try environment.renderTemplate(name: templateName, context: json)
     }
 }
