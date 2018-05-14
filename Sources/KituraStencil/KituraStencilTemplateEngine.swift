@@ -65,8 +65,7 @@ public class StencilTemplateEngine: TemplateEngine {
         var context = context
         context["loader"] = loader
         do {
-            let result = try environment.renderTemplate(name: templateName,  context: context)
-            return result
+            return try environment.renderTemplate(name: templateName,  context: context)
         } catch {
             throw StencilTemplateEngineError.unableToRenderContext(context: context)
         }

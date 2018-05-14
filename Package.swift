@@ -29,7 +29,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", .branch("master")),
+        .package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", from: "2.0.0"),
         .package(url: "https://github.com/kylef/Stencil.git", .upToNextMinor(from: "0.11.0"))
     ],
     targets: [
