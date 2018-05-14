@@ -19,11 +19,21 @@ import Stencil
 import PathKit
 import Foundation
 
+// StencilTemplateEngineError for Error handling.
 public enum StencilTemplateEngineError: Swift.Error {
+    // Thrown when StencilTemplateEngine.rootPaths property is empty.
     case rootPathsEmpty
-    case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
+    
+    // Call render(filePath, context, options, templateName).
+    case deprecatedRenderMethodCalled
+    
+    // Thrown when unable to cast 'json' value to a [String: Any].
     case unableToCastJSONToDict
+    
+    // Thrown when unable to encode the Encodable value provided to data.
     case unableToEncodeValue(value: Encodable)
+    
+    // Thrown when GRMustache fails to render the context with the given template.
     case unableToRenderContext(context: [String: Any])
 }
 
