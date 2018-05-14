@@ -24,6 +24,7 @@ public enum StencilTemplateEngineError: Swift.Error {
     case deprecatedRenderMethodCalled // call render(filePath, context, options, templateName)
     case unableToCastJSONToDict
     case unableToEncodeValue(value: Encodable)
+    case unableToRenderContext(context: [String: Any])
 }
 
 public class StencilTemplateEngine: TemplateEngine {
@@ -53,7 +54,12 @@ public class StencilTemplateEngine: TemplateEngine {
         let environment = Environment(loader: loader, extensions: [`extension`])
         var context = context
         context["loader"] = loader
-        return try environment.renderTemplate(name: templateName,  context: context)
+        do {
+            let result = try environment.renderTemplate(name: templateName,  context: context)
+            return result
+        } catch {
+            throw StencilTemplateEngineError.unableToRenderContext(context: context)
+        }
     }
 
     public func render<T: Encodable>(filePath: String, with value: T, forKey key: String?,
@@ -62,25 +68,25 @@ public class StencilTemplateEngine: TemplateEngine {
             throw StencilTemplateEngineError.rootPathsEmpty
         }
         
-        let loader = FileSystemLoader(paths: rootPaths)
-        let environment = Environment(loader: loader, extensions: [`extension`])
+        let json: [String: Any]
         
         if let contextKey = key {
-            return try environment.renderTemplate(name: templateName, context: [contextKey: value])
+            json = [contextKey: value]
+        } else {
+            var data = Data()
+            do {
+                data = try JSONEncoder().encode(value)
+            } catch {
+                throw StencilTemplateEngineError.unableToEncodeValue(value: value)
+            }
+            
+            guard let dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+                throw StencilTemplateEngineError.unableToCastJSONToDict
+            }
+            
+            json = dict
         }
         
-        var data = Data()
-        
-        do {
-            data = try JSONEncoder().encode(value)
-        } catch {
-            throw StencilTemplateEngineError.unableToEncodeValue(value: value)
-        }
-        
-        guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
-            throw StencilTemplateEngineError.unableToCastJSONToDict
-        }
-        
-        return try environment.renderTemplate(name: templateName, context: json)
+        return try render(filePath: filePath, context: json, options: options, templateName: templateName)
     }
 }
