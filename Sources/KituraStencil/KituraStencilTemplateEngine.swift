@@ -35,6 +35,9 @@ public enum StencilTemplateEngineError: Swift.Error {
     
     // Thrown when GRMustache fails to render the context with the given template.
     case unableToRenderContext(context: [String: Any])
+    
+    //Thrown when an array or set of Encodables is passed without a Key.
+    case noKeyProvidedForType(value: Encodable)
 }
 
 public class StencilTemplateEngine: TemplateEngine {
@@ -75,6 +78,14 @@ public class StencilTemplateEngine: TemplateEngine {
                                    options: RenderingOptions, templateName: String) throws -> String {
         if rootPaths.isEmpty {
             throw StencilTemplateEngineError.rootPathsEmpty
+        }
+        
+        //Throw an error if an array is passed without providing a key.
+        if key == nil {
+            let mirror = Mirror(reflecting: value)
+            if mirror.displayStyle == .collection {
+                throw StencilTemplateEngineError.noKeyProvidedForType(value: value)
+            }
         }
         
         let json: [String: Any]
