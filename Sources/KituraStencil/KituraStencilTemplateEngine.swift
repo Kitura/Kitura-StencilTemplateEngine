@@ -33,7 +33,7 @@ public enum StencilTemplateEngineError: Swift.Error {
     // Thrown when unable to encode the Encodable value provided to data.
     case unableToEncodeValue(value: Encodable)
     
-    // Thrown when GRMustache fails to render the context with the given template.
+    // Thrown when Stencil fails to render the context with the given template.
     case unableToRenderContext(context: [String: Any])
     
     //Thrown when an array or set of Encodables is passed without a Key.
