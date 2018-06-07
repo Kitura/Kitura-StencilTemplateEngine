@@ -77,7 +77,7 @@ public enum StencilTemplateEngineError: Swift.Error {
  */
 public class StencilTemplateEngine: TemplateEngine {
 
-    /// The file extension of files rendered by the KituraStencil template engine
+    /// The file extension of files rendered by the KituraStencil template engine: `stencil`
     public let fileExtension = "stencil"
 
     private let `extension`: Extension
@@ -113,7 +113,7 @@ public class StencilTemplateEngine: TemplateEngine {
     ///                      the content.
     /// - Parameter context: A set of variables in the form of a Dictionary of
     ///                     Key/Value pairs, that can be used when generating the content.
-    /// - Parameter options: rendering options, different per each template engine
+    /// - Parameter options: Unused by this templating engine.
     ///
     /// - Parameter templateName: the name of the template
     ///
@@ -143,7 +143,7 @@ public class StencilTemplateEngine: TemplateEngine {
     ///
     /// - Parameter forKey: A value used to match the Encodable values to the correct variable in a template file.
     ///                                 The `forKey` value should match the desired variable in the template file.
-    /// - Parameter options: rendering options, different per each template engine.
+    /// - Parameter options: Unused by this templating engine.
     ///
     /// - Parameter templateName: the name of the template.
     ///
