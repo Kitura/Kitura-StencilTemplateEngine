@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           KituraStencil Docs
         </a>
-         (50% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -94,7 +94,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A <code>TemplateEngine</code> for Kitura that uses Stencil for templating.</p>
+                        <p>A <code>TemplateEngine</code> for Kitura that uses <a href="https://github.com/stencilproject/Stencil">Stencil</a> for templating.</p>
 
 <p>The default file extension for templates using this engine is <code>stencil</code>. If you do
 not explicitly provide a file extension in the call to <code>response.render</code> then this
@@ -107,8 +107,10 @@ extension will be applied automatically.</p>
        <span class="k">try</span> <span class="n">response</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="s">"StencilExample.stencil"</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"World!"</span><span class="p">]])</span>
        <span class="nf">next</span><span class="p">()</span>
    <span class="p">}</span>
+</code></pre>
 
-   <span class="c1">// A codable type containing structured data to be used in our template</span>
+<p>A second example, using type-safe templating. For more information, see: <a href="https://developer.ibm.com/swift/2018/05/31/type-safe-templating/">https://developer.ibm.com/swift/2018/05/31/type-safe-templating/</a></p>
+<pre class="highlight swift"><code>   <span class="c1">// A codable type containing structured data to be used in our template</span>
    <span class="kd">struct</span> <span class="kt">Friend</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
        <span class="k">let</span> <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span>
        <span class="k">let</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span>
@@ -123,8 +125,6 @@ extension will be applied automatically.</p>
        <span class="nf">next</span><span class="p">()</span>
    <span class="p">}</span>
 </code></pre>
-
-<p>For more information on type-safe templating, see: <a href="https://developer.ibm.com/swift/2018/05/31/type-safe-templating/">https://developer.ibm.com/swift/2018/05/31/type-safe-templating/</a></p>
 
                         <a href="Classes/StencilTemplateEngine.html" class="slightly-smaller">See more</a>
                       </div>

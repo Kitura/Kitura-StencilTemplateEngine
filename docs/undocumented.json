@@ -1,54 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 24,
-      "symbol": "StencilTemplateEngineError",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 26,
-      "symbol": "StencilTemplateEngineError.rootPathsEmpty",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 29,
-      "symbol": "StencilTemplateEngineError.deprecatedRenderMethodCalled",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 32,
-      "symbol": "StencilTemplateEngineError.unableToCastJSONToDict",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 35,
-      "symbol": "StencilTemplateEngineError.unableToEncodeValue",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 38,
-      "symbol": "StencilTemplateEngineError.unableToRenderContext",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine/Sources/KituraStencil/KituraStencilTemplateEngine.swift",
-      "line": 41,
-      "symbol": "StencilTemplateEngineError.noKeyProvidedForType",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/travis/build/IBM-Swift/Kitura-StencilTemplateEngine"
 }

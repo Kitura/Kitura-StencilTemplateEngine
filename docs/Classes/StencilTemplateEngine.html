@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           KituraStencil Docs
         </a>
-         (50% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -79,7 +79,7 @@
 
                 </div>
               </div>
-            <p>A <code>TemplateEngine</code> for Kitura that uses Stencil for templating.</p>
+            <p>A <code>TemplateEngine</code> for Kitura that uses <a href="https://github.com/stencilproject/Stencil">Stencil</a> for templating.</p>
 
 <p>The default file extension for templates using this engine is <code>stencil</code>. If you do
 not explicitly provide a file extension in the call to <code>response.render</code> then this
@@ -92,8 +92,10 @@ extension will be applied automatically.</p>
        <span class="k">try</span> <span class="n">response</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="s">"StencilExample.stencil"</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"World!"</span><span class="p">]])</span>
        <span class="nf">next</span><span class="p">()</span>
    <span class="p">}</span>
+</code></pre>
 
-   <span class="c1">// A codable type containing structured data to be used in our template</span>
+<p>A second example, using type-safe templating. For more information, see: <a href="https://developer.ibm.com/swift/2018/05/31/type-safe-templating/">https://developer.ibm.com/swift/2018/05/31/type-safe-templating/</a></p>
+<pre class="highlight swift"><code>   <span class="c1">// A codable type containing structured data to be used in our template</span>
    <span class="kd">struct</span> <span class="kt">Friend</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
        <span class="k">let</span> <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span>
        <span class="k">let</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span>
@@ -108,8 +110,6 @@ extension will be applied automatically.</p>
        <span class="nf">next</span><span class="p">()</span>
    <span class="p">}</span>
 </code></pre>
-
-<p>For more information on type-safe templating, see: <a href="https://developer.ibm.com/swift/2018/05/31/type-safe-templating/">https://developer.ibm.com/swift/2018/05/31/type-safe-templating/</a></p>
 
           </div>
         </section>
@@ -131,7 +131,7 @@ extension will be applied automatically.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The file extension of files rendered by the KituraStencil template engine: <code>stencil</code></p>
+                        <p>The file extension of files rendered by the KituraStencil template engine.</p>
 
                       </div>
                       <div class="declaration">
@@ -181,7 +181,7 @@ extension will be applied automatically.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>An optional Stencil <code>Extension</code> for customizing the
+                                  <p>An optional Stencil <a href="http://stencil.fuller.li/en/latest/custom-template-tags-and-filters.html"><code>Extension</code></a> for customizing the
 underlying template engine.</p>
                                 </div>
                               </td>
@@ -205,8 +205,8 @@ underlying template engine.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set root paths for the template engine - the paths where the included templates can be
-searched. Note that Kitura calls this function for you with a default path of <code>./Views/</code>
+                        <p>Defines the filesystem paths where your Stencil templates can be located.
+Note that Kitura calls this function for you with a default path of <code>./Views/</code>
 or you can customize this by setting the <code>router.viewsPath</code> property.</p>
 
                       </div>
@@ -230,7 +230,7 @@ or you can customize this by setting the <code>router.viewsPath</code> property.
                               </td>
                               <td>
                                 <div>
-                                  <p>the paths where the included templates can be</p>
+                                  <p>The paths to be searched for Stencil templates.</p>
                                 </div>
                               </td>
                             </tr>
@@ -344,7 +344,7 @@ Note that this function is called by Kitura when you call <code>response.render(
                               </td>
                               <td>
                                 <div>
-                                  <p>the name of the template</p>
+                                  <p>The name of the template.</p>
                                 </div>
                               </td>
                             </tr>
@@ -442,7 +442,7 @@ Note that this function is called by Kitura when you call <code>response.render(
                               </td>
                               <td>
                                 <div>
-                                  <p>the name of the template.</p>
+                                  <p>The name of the template.</p>
                                 </div>
                               </td>
                             </tr>
