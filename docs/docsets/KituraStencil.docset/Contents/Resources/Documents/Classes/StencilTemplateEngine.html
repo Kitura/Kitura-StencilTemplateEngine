@@ -81,9 +81,7 @@
               </div>
             <p>A <code>TemplateEngine</code> for Kitura that uses <a href="https://github.com/stencilproject/Stencil">Stencil</a> for templating.</p>
 
-<p>The default file extension for templates using this engine is <code>stencil</code>. If you do
-not explicitly provide a file extension in the call to <code>response.render</code> then this
-extension will be applied automatically.</p>
+<p>The file extension for templates using this engine is <code>stencil</code>. If the file extension of the template specified in the call to <a href="https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF"><code>response.render</code></a> matches, this template engine will be invoked. If no extension is specified, <em>and</em> this engine has been set as the default via <a href="https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC10setDefaulty0A14TemplateEngine0eF0_pSg08templateF0_tF"><code>router.setDefault(templateEngine:)</code></a>, the extension will be applied automatically.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code>   <span class="n">router</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">templateEngine</span><span class="p">:</span> <span class="kt">StencilTemplateEngine</span><span class="p">())</span>
 
@@ -207,7 +205,7 @@ underlying template engine.</p>
                       <div class="abstract">
                         <p>Defines the filesystem paths where your Stencil templates can be located.
 Note that Kitura calls this function for you with a default path of <code>./Views/</code>
-or you can customize this by setting the <code>router.viewsPath</code> property.</p>
+or you can customize this by setting the <a href="https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC9viewsPathSSvp"><code>router.viewsPath</code></a> property.</p>
 
                       </div>
                       <div class="declaration">
@@ -282,7 +280,7 @@ or you can customize this by setting the <code>router.viewsPath</code> property.
                       <div class="abstract">
                         <p>Take a template file and a set of <q>variables</q> in the form of a context
 and generate content to be sent back to the client.
-Note that this function is called by Kitura when you call <code>response.render(resource:context:options:)</code>.</p>
+Note that this function is called by Kitura when you call <a href="https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF"><code>response.render(_:context:options:)</code></a>.</p>
 
                       </div>
                       <div class="declaration">
@@ -367,8 +365,8 @@ Note that this function is called by Kitura when you call <code>response.render(
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Take a template file and an Encodable type and generate the content to be sent back to the client.
-Note that this function is called by Kitura when you call <code>response.render(resource:with:forKey:options:)</code>.</p>
+                        <p>Take a template file and an <code>Encodable</code> type and generate the content to be sent back to the client.
+Note that this function is called by Kitura when you call <a href="https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_x4withSSSg6forKey0A14TemplateEngine16RenderingOptions_p7optionstKs9EncodableRzlF"><code>response.render(_:with:forKey:options:)</code></a>.</p>
 
                       </div>
                       <div class="declaration">
@@ -405,7 +403,7 @@ Note that this function is called by Kitura when you call <code>response.render(
                               </td>
                               <td>
                                 <div>
-                                  <p>A value that conforms to Encodable which is used to generate the content.</p>
+                                  <p>A value that conforms to <code>Encodable</code> which is used to generate the content.</p>
                                 </div>
                               </td>
                             </tr>
@@ -417,7 +415,7 @@ Note that this function is called by Kitura when you call <code>response.render(
                               </td>
                               <td>
                                 <div>
-                                  <p>A value used to match the Encodable values to the correct variable in a template file.
+                                  <p>A value used to match the <code>Encodable</code> values to the correct variable in a template file.
                             The <code>forKey</code> value should match the desired variable in the template file.</p>
                                 </div>
                               </td>

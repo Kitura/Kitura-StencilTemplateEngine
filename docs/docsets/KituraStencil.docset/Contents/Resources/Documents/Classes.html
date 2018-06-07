@@ -96,9 +96,7 @@
                       <div class="abstract">
                         <p>A <code>TemplateEngine</code> for Kitura that uses <a href="https://github.com/stencilproject/Stencil">Stencil</a> for templating.</p>
 
-<p>The default file extension for templates using this engine is <code>stencil</code>. If you do
-not explicitly provide a file extension in the call to <code>response.render</code> then this
-extension will be applied automatically.</p>
+<p>The file extension for templates using this engine is <code>stencil</code>. If the file extension of the template specified in the call to <a href="https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF"><code>response.render</code></a> matches, this template engine will be invoked. If no extension is specified, <em>and</em> this engine has been set as the default via <a href="https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC10setDefaulty0A14TemplateEngine0eF0_pSg08templateF0_tF"><code>router.setDefault(templateEngine:)</code></a>, the extension will be applied automatically.</p>
 <h3 id='usage-example' class='heading'>Usage Example:</h3>
 <pre class="highlight swift"><code>   <span class="n">router</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">templateEngine</span><span class="p">:</span> <span class="kt">StencilTemplateEngine</span><span class="p">())</span>
 
