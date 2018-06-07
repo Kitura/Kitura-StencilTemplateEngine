@@ -20,44 +20,102 @@ import Stencil
 import PathKit
 import Foundation
 
-// StencilTemplateEngineError for Error handling.
+/// An Error type for use when describing errors that can occur while working with
+/// the `StencilTemplateEngine` type.
 public enum StencilTemplateEngineError: Swift.Error {
-    // Thrown when StencilTemplateEngine.rootPaths property is empty.
+    /// Thrown when the `StencilTemplateEngine.rootPaths` property is empty.
     case rootPathsEmpty
     
-    // Call render(filePath, context, options, templateName).
+    /// A deprecated render method was called. Instead, call `render(filePath:context:options:templateName:)`.
     case deprecatedRenderMethodCalled
     
-    // Thrown when unable to cast 'json' value to a [String: Any].
+    /// Thrown when unable to cast 'json' value to a `[String: Any]`.
     case unableToCastJSONToDict
     
-    // Thrown when unable to encode the Encodable value provided to data.
+    /// Thrown when unable to encode the `Encodable` value provided to data.
     case unableToEncodeValue(value: Encodable)
     
-    // Thrown when Stencil fails to render the context with the given template.
+    /// Thrown when Stencil fails to render the context with the given template.
     case unableToRenderContext(context: [String: Any])
     
-    //Thrown when an array or set of Encodables is passed without a Key.
+    /// Thrown when a `[Encodable]` or `Set<Encodable>` is passed without a Key.
     case noKeyProvidedForType(value: Encodable)
 }
 
+/**
+ A `TemplateEngine` for Kitura that uses [Stencil](https://github.com/stencilproject/Stencil) for templating.
+
+ The file extension for templates using this engine is `stencil`. If the file extension of the template specified in the call to [`response.render`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF) matches, this template engine will be invoked. If no extension is specified, _and_ this engine has been set as the default via [`router.setDefault(templateEngine:)`](https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC10setDefaulty0A14TemplateEngine0eF0_pSg08templateF0_tF), the extension will be applied automatically.
+
+ ### Usage Example: ###
+ ```swift
+    router.add(templateEngine: StencilTemplateEngine())
+
+    // An example of using a dictionary of [String: Any] parameters to be rendered
+    router.get("/hello") { request, response, next in
+        try response.render("StencilExample.stencil", context: ["name": "World!"]])
+        next()
+    }
+ ```
+ A second example, using type-safe templating. For more information, see: https://developer.ibm.com/swift/2018/05/31/type-safe-templating/
+ ```swift
+    // A codable type containing structured data to be used in our template
+    struct Friend: Codable {
+        let firstName: String
+        let lastName: String
+    }
+
+    // Structured data that we wish to render
+    let friends = [Friend(firstName: "Jack", lastName: "Sparrow"), Friend(firstName: "Captain", lastName: "America")]
+
+    // An example of using type-safe templating to render data from a Swift type
+    router.get("/friends") { request, response, next in
+        try response.render("MyStencil.stencil", with: friends, forKey: "friends")
+        next()
+    }
+ ```
+ */
 public class StencilTemplateEngine: TemplateEngine {
+
+    /// The file extension of files rendered by the KituraStencil template engine.
     public let fileExtension = "stencil"
+
     private let `extension`: Extension
     private var rootPaths: [Path] = []
 
+    /// Initializes a KituraStencil template engine.
+    ///
+    /// - Parameter extension: An optional Stencil [`Extension`](http://stencil.fuller.li/en/latest/custom-template-tags-and-filters.html) for customizing the
+    ///   underlying template engine.
     public init(extension: Extension = Extension()) {
         self.`extension` = `extension`
     }
 
+    /// Defines the filesystem paths where your Stencil templates can be located.
+    /// Note that Kitura calls this function for you with a default path of `./Views/`
+    /// or you can customize this by setting the [`router.viewsPath`](https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC9viewsPathSSvp) property.
+    ///
+    /// - Parameter rootPaths: The paths to be searched for Stencil templates.
     public func setRootPaths(rootPaths: [String]) {
         self.rootPaths = rootPaths.map { Path($0) }
     }
 
+    /// This function is deprecated. Use `render(filePath:context:options:templateName:)` instead.
     public func render(filePath: String, context: [String: Any]) throws -> String {
         throw StencilTemplateEngineError.deprecatedRenderMethodCalled
     }
-    
+
+    /// Take a template file and a set of "variables" in the form of a context
+    /// and generate content to be sent back to the client.
+    /// Note that this function is called by Kitura when you call [`response.render(_:context:options:)`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF).
+    ///
+    /// - Parameter filePath: The path of the template file to use when generating
+    ///                      the content.
+    /// - Parameter context: A set of variables in the form of a Dictionary of
+    ///                     Key/Value pairs, that can be used when generating the content.
+    /// - Parameter options: Unused by this templating engine.
+    /// - Parameter templateName: The name of the template.
+    ///
     public func render(filePath: String, context: [String: Any], options: RenderingOptions,
                        templateName: String) throws -> String {
         if rootPaths.isEmpty {
@@ -75,6 +133,18 @@ public class StencilTemplateEngine: TemplateEngine {
         }
     }
 
+    /// Take a template file and an `Encodable` type and generate the content to be sent back to the client.
+    /// Note that this function is called by Kitura when you call [`response.render(_:with:forKey:options:)`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_x4withSSSg6forKey0A14TemplateEngine16RenderingOptions_p7optionstKs9EncodableRzlF).
+    ///
+    /// - Parameter filePath: The path of the template file to use when generating
+    ///                      the content.
+    /// - Parameter with: A value that conforms to `Encodable` which is used to generate the content.
+    ///
+    /// - Parameter forKey: A value used to match the `Encodable` values to the correct variable in a template file.
+    ///                                 The `forKey` value should match the desired variable in the template file.
+    /// - Parameter options: Unused by this templating engine.
+    /// - Parameter templateName: The name of the template.
+    ///
     public func render<T: Encodable>(filePath: String, with value: T, forKey key: String?,
                                    options: RenderingOptions, templateName: String) throws -> String {
         if rootPaths.isEmpty {
