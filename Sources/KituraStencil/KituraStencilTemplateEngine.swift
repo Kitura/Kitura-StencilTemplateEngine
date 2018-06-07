@@ -21,24 +21,24 @@ import PathKit
 import Foundation
 
 /// An Error type for use when describing errors that can occur while working with
-/// the `KituraStencil` type.
+/// the `StencilTemplateEngine` type.
 public enum StencilTemplateEngineError: Swift.Error {
-    /// Thrown when StencilTemplateEngine.rootPaths property is empty.
+    /// Thrown when the `StencilTemplateEngine.rootPaths` property is empty.
     case rootPathsEmpty
     
-    /// Call render(filePath, context, options, templateName).
+    /// A deprecated render method was called. Instead, call `render(filePath:context:options:templateName:)`.
     case deprecatedRenderMethodCalled
     
-    /// Thrown when unable to cast 'json' value to a [String: Any].
+    /// Thrown when unable to cast 'json' value to a `[String: Any]`.
     case unableToCastJSONToDict
     
-    /// Thrown when unable to encode the Encodable value provided to data.
+    /// Thrown when unable to encode the `Encodable` value provided to data.
     case unableToEncodeValue(value: Encodable)
     
     /// Thrown when Stencil fails to render the context with the given template.
     case unableToRenderContext(context: [String: Any])
     
-    /// Thrown when an array or set of Encodables is passed without a Key.
+    /// Thrown when a `[Encodable]` or `Set<Encodable>` is passed without a Key.
     case noKeyProvidedForType(value: Encodable)
 }
 
