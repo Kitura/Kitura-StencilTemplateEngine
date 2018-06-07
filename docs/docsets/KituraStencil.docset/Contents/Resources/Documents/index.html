@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KituraStencil  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="KituraStencil  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          KituraStencil Docs
+        </a>
+         (50% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">KituraStencil Reference</a>
+      <img class="carat" src="img/carat.png" />
+      KituraStencil  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/StencilTemplateEngine.html">StencilTemplateEngine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/StencilTemplateEngineError.html">StencilTemplateEngineError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <p align="center">
+<a href="http://kitura.io/">
+<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+</a>
+</p>
+
+<p align="center">
+<a href="http://www.kitura.io/">
+<img src="https://img.shields.io/badge/docs-kitura.io-1FBCE4.svg" alt="Docs">
+</a>
+<a href="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine">
+<img src="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine.svg?branch=master" alt="Build Status - Master">
+</a>
+<img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
+<img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
+<img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+<a href="http://swift-at-ibm-slack.mybluemix.net/">
+<img src="http://swift-at-ibm-slack.mybluemix.net/badge.svg" alt="Slack Status">
+</a>
+</p>
+<h1 id='kitura-stenciltemplateengine' class='heading'>Kitura-StencilTemplateEngine</h1>
+
+<p>A templating engine for Kitura that uses Stencil-based templates.</p>
+<h2 id='summary' class='heading'>Summary</h2>
+
+<p>Kitura-StencilTemplateEngine is a plugin for <a href="https://github.com/IBM-Swift/Kitura-TemplateEngine.git">Kitura Template Engine</a> for using <a href="https://github.com/kylef/Stencil">Stencil</a> with the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.</p>
+<h2 id='stencil-template-file' class='heading'>Stencil Template File</h2>
+
+<p>The template file is basically HTML with gaps where we can insert code and variables. <a href="https://github.com/kylef/Stencil">Stencil</a> is a templating language used to write a template file and Kitura-StencilTemplateEngine can use any standard Stencil template.</p>
+
+<p>The <a href="https://stencil.fuller.li/en/latest/">Stencil user guide</a> provides documentation and examples on how to write a Stencil template File.</p>
+
+<p>The Kitura router, by default, will look in the <code>Views</code> folder for Stencil template files, that is files with the extension <code>.stencil</code>.</p>
+<h2 id='example' class='heading'>Example</h2>
+
+<p>The following example takes a server generated using <code>kitura init</code> and modifies it to serve Stencil-formatted text from a <code>.stencil</code> file.</p>
+
+<p>The files which will be edited in this example, are structured as follows:</p>
+
+<pre>
+&lt;ServerRepositoryName&gt;
+├── Package.swift
+├── Sources
+│    └── Application
+│         └── Application.swift
+└── Views
+     └── Example.stencil
+</pre>
+
+<p>The <code>Views</code> folder and <code>Example.stencil</code> file will be created later on in this example, since they are not initialized by <code>kitura init</code>.</p>
+<h4 id='package-swift' class='heading'>Package.swift</h4>
+
+<ul>
+<li>Define <a href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"><q>https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git</q></a> as a dependency.</li>
+<li>Add <q>KituraStencil</q> to the targets for Application.</li>
+</ul>
+<h4 id='application-swift' class='heading'>Application.swift</h4>
+
+<p>Inside the <code>Application.swift</code> file, add the following code to render the <code>Example.stencil</code> template file on the <q>/articles</q> route.</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">KituraStencil</span>
+</code></pre>
+
+<p>Add the following code inside the <code>postInit()</code> function:</p>
+<pre class="highlight swift"><code><span class="n">router</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">templateEngine</span><span class="p">:</span> <span class="kt">StencilTemplateEngine</span><span class="p">())</span>
+<span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/articles"</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">next</span> <span class="k">in</span>
+<span class="k">var</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]]]</span> <span class="o">=</span>
+    <span class="p">[</span>
+        <span class="s">"articles"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span><span class="s">"title"</span> <span class="p">:</span> <span class="s">"Using Stencil with Swift"</span><span class="p">,</span> <span class="s">"author"</span> <span class="p">:</span> <span class="s">"IBM Swift"</span><span class="p">],</span>
+            <span class="p">[</span><span class="s">"title"</span> <span class="p">:</span> <span class="s">"Server-Side Swift with Kitura"</span><span class="p">,</span> <span class="s">"author"</span> <span class="p">:</span> <span class="s">"Kitura"</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="k">try</span> <span class="n">response</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="s">"Example.stencil"</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="nf">status</span><span class="p">(</span><span class="o">.</span><span class="kt">OK</span><span class="p">)</span>
+    <span class="nf">next</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='example-stencil' class='heading'>Example.stencil</h4>
+
+<p>Create the <code>Views</code> folder and put the following Stencil template code into a file called <code>Example.stencil</code>:</p>
+<pre class="highlight html"><code><span class="nt">&lt;html&gt;</span>
+    There are {{ articles.count }} articles. <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+
+    {% for article in articles %}
+        - {{ article.title }} written by {{ article.author }}. <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+    {% endfor %}
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+
+<p>This example is adapted from the <a href="https://stencil.fuller.li/en/latest/">Stencil user guide</a> code. It will display the number of articles followed by a list of the articles and their authors.</p>
+
+<p>Run the application and once the server is running, go to <a href="http://localhost:8080/articles">http://localhost:8080/articles</a> to view the rendered Stencil template.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt">LICENSE</a>.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

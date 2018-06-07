@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StencilTemplateEngine Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/StencilTemplateEngine" class="dashAnchor"></a>
+
+    <a title="StencilTemplateEngine Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          KituraStencil Docs
+        </a>
+         (50% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">KituraStencil Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      StencilTemplateEngine Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StencilTemplateEngine.html">StencilTemplateEngine</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/StencilTemplateEngineError.html">StencilTemplateEngineError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>StencilTemplateEngine</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StencilTemplateEngine</span><span class="p">:</span> <span class="kt">TemplateEngine</span></code></pre>
+
+                </div>
+              </div>
+            <p>A <code>TemplateEngine</code> for Kitura that uses Stencil for templating.</p>
+
+<p>The default file extension for templates using this engine is <code>stencil</code>. If you do
+not explicitly provide a file extension in the call to <code>response.render</code> then this
+extension will be applied automatically.</p>
+<h3 id='usage-example' class='heading'>Usage Example:</h3>
+<pre class="highlight swift"><code>   <span class="n">router</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">templateEngine</span><span class="p">:</span> <span class="kt">StencilTemplateEngine</span><span class="p">())</span>
+
+   <span class="c1">// An example of using a dictionary of [String: Any] parameters to be rendered</span>
+   <span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/hello"</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">next</span> <span class="k">in</span>
+       <span class="k">try</span> <span class="n">response</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="s">"StencilExample.stencil"</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"World!"</span><span class="p">]])</span>
+       <span class="nf">next</span><span class="p">()</span>
+   <span class="p">}</span>
+
+   <span class="c1">// A codable type containing structured data to be used in our template</span>
+   <span class="kd">struct</span> <span class="kt">Friend</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+       <span class="k">let</span> <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span>
+       <span class="k">let</span> <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span>
+   <span class="p">}</span>
+
+   <span class="c1">// Structured data that we wish to render</span>
+   <span class="k">let</span> <span class="nv">friends</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Friend</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="s">"Jack"</span><span class="p">,</span> <span class="nv">lastName</span><span class="p">:</span> <span class="s">"Sparrow"</span><span class="p">),</span> <span class="kt">Friend</span><span class="p">(</span><span class="nv">firstName</span><span class="p">:</span> <span class="s">"Captain"</span><span class="p">,</span> <span class="nv">lastName</span><span class="p">:</span> <span class="s">"America"</span><span class="p">)]</span>
+
+   <span class="c1">// An example of using type-safe templating to render data from a Swift type</span>
+   <span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/friends"</span><span class="p">)</span> <span class="p">{</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">next</span> <span class="k">in</span>
+       <span class="k">try</span> <span class="n">response</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="s">"MyStencil.stencil"</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">friends</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="s">"friends"</span><span class="p">)</span>
+       <span class="nf">next</span><span class="p">()</span>
+   <span class="p">}</span>
+</code></pre>
+
+<p>For more information on type-safe templating, see: <a href="https://developer.ibm.com/swift/2018/05/31/type-safe-templating/">https://developer.ibm.com/swift/2018/05/31/type-safe-templating/</a></p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineC13fileExtensionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/fileExtension" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineC13fileExtensionSSvp">fileExtension</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The file extension of files rendered by the KituraStencil template engine: <code>stencil</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fileExtension</span> <span class="o">=</span> <span class="s">"stencil"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineCAC0B09ExtensionC9extension_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(extension:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineCAC0B09ExtensionC9extension_tcfc">init(extension:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes a KituraStencil template engine.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">extension</span><span class="p">:</span> <span class="kt">Extension</span> <span class="o">=</span> <span class="kt">Extension</span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extension</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional Stencil <code>Extension</code> for customizing the
+underlying template engine.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineC12setRootPathsySaySSG04rootG0_tF"></a>
+                    <a name="//apple_ref/swift/Method/setRootPaths(rootPaths:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineC12setRootPathsySaySSG04rootG0_tF">setRootPaths(rootPaths:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set root paths for the template engine - the paths where the included templates can be
+searched. Note that Kitura calls this function for you with a default path of <code>./Views/</code>
+or you can customize this by setting the <code>router.viewsPath</code> property.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setRootPaths</span><span class="p">(</span><span class="nv">rootPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rootPaths</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the paths where the included templates can be</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_s10DictionaryVySSypG7contexttKF"></a>
+                    <a name="//apple_ref/swift/Method/render(filePath:context:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_s10DictionaryVySSypG7contexttKF">render(filePath:context:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This function is deprecated. Use <code><a href="../Classes/StencilTemplateEngine.html#/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_s10DictionaryVySSypG7context0acD016RenderingOptions_p7optionsSS12templateNametKF">render(filePath:context:options:templateName:)</a></code> instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="nv">filePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_s10DictionaryVySSypG7context0acD016RenderingOptions_p7optionsSS12templateNametKF"></a>
+                    <a name="//apple_ref/swift/Method/render(filePath:context:options:templateName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_s10DictionaryVySSypG7context0acD016RenderingOptions_p7optionsSS12templateNametKF">render(filePath:context:options:templateName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Take a template file and a set of <q>variables</q> in the form of a context
+and generate content to be sent back to the client.
+Note that this function is called by Kitura when you call <code>response.render(resource:context:options:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="nv">filePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">RenderingOptions</span><span class="p">,</span>
+                   <span class="nv">templateName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path of the template file to use when generating
+                 the content.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A set of variables in the form of a Dictionary of
+                Key/Value pairs, that can be used when generating the content.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Unused by this templating engine.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>templateName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the template</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_x4withSSSg6forKey0acD016RenderingOptions_p7optionsSS12templateNametKs9EncodableRzlF"></a>
+                    <a name="//apple_ref/swift/Method/render(filePath:with:forKey:options:templateName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13KituraStencil0B14TemplateEngineC6renderS2S8filePath_x4withSSSg6forKey0acD016RenderingOptions_p7optionsSS12templateNametKs9EncodableRzlF">render(filePath:with:forKey:options:templateName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Take a template file and an Encodable type and generate the content to be sent back to the client.
+Note that this function is called by Kitura when you call <code>response.render(resource:with:forKey:options:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">render</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">Encodable</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">filePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">with</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+                               <span class="nv">options</span><span class="p">:</span> <span class="kt">RenderingOptions</span><span class="p">,</span> <span class="nv">templateName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path of the template file to use when generating
+                 the content.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>with</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value that conforms to Encodable which is used to generate the content.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value used to match the Encodable values to the correct variable in a template file.
+                            The <code>forKey</code> value should match the desired variable in the template file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Unused by this templating engine.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>templateName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the name of the template.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-06-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
