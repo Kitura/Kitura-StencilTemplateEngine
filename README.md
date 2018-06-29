@@ -27,6 +27,9 @@ A templating engine for Kitura that uses Stencil-based templates.
 ## Summary
 Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://github.com/IBM-Swift/Kitura-TemplateEngine.git) for using [Stencil](https://github.com/kylef/Stencil) with the [Kitura](https://github.com/IBM-Swift/Kitura) server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.
 
+## Swift version
+The latest version of Kitura-StencilTemplateEngine requires **Swift 4.0** or newer. You can download this version of the Swift binaries by following this [link](https://swift.org/download/). Compatibility with other Swift versions is not guaranteed.
+
 ## Stencil Template File
 The template file is basically HTML with gaps where we can insert code and variables. [Stencil](https://github.com/kylef/Stencil) is a templating language used to write a template file and Kitura-StencilTemplateEngine can use any standard Stencil template.
 
