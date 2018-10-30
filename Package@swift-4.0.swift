@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:4.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 /**
@@ -30,7 +30,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/IBM-Swift/Kitura-TemplateEngine.git", from: "2.0.0"),
-        .package(url: "https://github.com/kylef/Stencil.git", .upToNextMinor(from: "0.13.0"))
+        .package(url: "https://github.com/kylef/Stencil.git", .upToNextMinor(from: "0.11.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
