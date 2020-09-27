@@ -1,16 +1,16 @@
 <p align="center">
-<a href="http://kitura.io/">
-<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+<a href="http://kitura.dev/">
+<img src="https://raw.githubusercontent.com/Kitura/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
 </a>
 </p>
 
 
 <p align="center">
-    <a href="https://ibm-swift.github.io/Kitura-StencilTemplateEngine/index.html">
+    <a href="https://kitura.github.io/Kitura-StencilTemplateEngine/index.html">
     <img src="https://img.shields.io/badge/apidoc-KituraStencilTemplateEngine-1FBCE4.svg?style=flat" alt="APIDoc">
     </a>
-    <a href="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine">
-    <img src="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine.svg?branch=master" alt="Build Status - Master">
+    <a href="https://travis-ci.org/Kitura/Kitura-StencilTemplateEngine">
+    <img src="https://travis-ci.org/Kitura/Kitura-StencilTemplateEngine.svg?branch=master" alt="Build Status - Master">
     </a>
     <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
     <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -22,7 +22,7 @@
 
 # Kitura-StencilTemplateEngine
 
-Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://github.com/IBM-Swift/Kitura-TemplateEngine.git) for using [Stencil](https://github.com/kylef/Stencil) with the [Kitura](https://github.com/IBM-Swift/Kitura) server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.
+Kitura-StencilTemplateEngine is a plugin for [Kitura Template Engine](https://github.com/Kitura/Kitura-TemplateEngine.git) for using [Stencil](https://github.com/kylef/Stencil) with the [Kitura](https://github.com/Kitura/Kitura) server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.
 
 ## Swift version
 The latest version of Kitura-StencilTemplateEngine requires **Swift 4.0** or newer. You can download this version of the Swift binaries by following this [link](https://swift.org/download/). Compatibility with other Swift versions is not guaranteed.
@@ -38,10 +38,10 @@ The Kitura router, by default, will look in the `Views` folder for Stencil templ
 
 #### Add dependencies
 
-Add the `Kitura-StencilTemplateEngine` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `Kitura-StencilTemplateEngine` [release](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/releases).
+Add the `Kitura-StencilTemplateEngine` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `Kitura-StencilTemplateEngine` [release](https://github.com/Kitura/Kitura-StencilTemplateEngine/releases).
 
 ```swift
-.package(url: "https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git", from: "x.x.x")
+.package(url: "https://github.com/Kitura/Kitura-StencilTemplateEngine.git", from: "x.x.x")
 ```
 
 Add `KituraStencil` to your target's dependencies:
@@ -92,7 +92,7 @@ router.get("/articles") { _, response, next in
 var context: [String: [[String:Any]]] =
     [
         "articles": [
-            ["title" : "Using Stencil with Swift", "author" : "IBM Swift"],
+            ["title" : "Using Stencil with Swift", "author" : "Kitura"],
             ["title" : "Server-Side Swift with Kitura", "author" : "Kitura"],
         ]
     ]
@@ -119,11 +119,11 @@ This example is adapted from the [Stencil user guide](https://stencil.fuller.li/
 Run the application and once the server is running, go to [http://localhost:8080/articles](http://localhost:8080/articles) to view the rendered Stencil template.
 
 ## API Documentation
-For more information visit our [API reference](https://ibm-swift.github.io/Kitura-StencilTemplateEngine/index.html).
+For more information visit our [API reference](https://kitura.github.io/Kitura-StencilTemplateEngine/index.html).
 
 ## Community
 
 We love to talk server-side Swift, and Kitura. Join our [Slack](http://swift-at-ibm-slack.mybluemix.net/) to meet the team!
 
 ## License
-This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt).
+This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/Kitura/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt).
