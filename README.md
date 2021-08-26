@@ -41,7 +41,7 @@ The Kitura router, by default, will look in the `Views` folder for Stencil templ
 Add the `Kitura-StencilTemplateEngine` package to the dependencies within your application’s `Package.swift` file. Substitute `"x.x.x"` with the latest `Kitura-StencilTemplateEngine` [release](https://github.com/Kitura/Kitura-StencilTemplateEngine/releases).
 
 ```swift
-.package(url: "https://github.com/Kitura/Kitura-StencilTemplateEngine.git", from: "x.x.x")
+.package(name: "KituraStencil", url: "https://github.com/Kitura/Kitura-StencilTemplateEngine.git", from: "x.x.x")
 ```
 
 Add `KituraStencil` to your target's dependencies:
