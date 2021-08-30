@@ -45,7 +45,7 @@ public enum StencilTemplateEngineError: Swift.Error {
 /**
  A `TemplateEngine` for Kitura that uses [Stencil](https://github.com/stencilproject/Stencil) for templating.
 
- The file extension for templates using this engine is `stencil`. If the file extension of the template specified in the call to [`response.render`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF) matches, this template engine will be invoked. If no extension is specified, _and_ this engine has been set as the default via [`router.setDefault(templateEngine:)`](https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC10setDefaulty0A14TemplateEngine0eF0_pSg08templateF0_tF), the extension will be applied automatically.
+ The file extension for templates using this engine is `stencil`. If the file extension of the template specified in the call to [`response.render`](https://kitura.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF) matches, this template engine will be invoked. If no extension is specified, _and_ this engine has been set as the default via [`router.setDefault(templateEngine:)`](https://kitura.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC10setDefaulty0A14TemplateEngine0eF0_pSg08templateF0_tF), the extension will be applied automatically.
 
  ### Usage Example: ###
  ```swift
@@ -93,7 +93,7 @@ public class StencilTemplateEngine: TemplateEngine {
 
     /// Defines the filesystem paths where your Stencil templates can be located.
     /// Note that Kitura calls this function for you with a default path of `./Views/`
-    /// or you can customize this by setting the [`router.viewsPath`](https://ibm-swift.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC9viewsPathSSvp) property.
+    /// or you can customize this by setting the [`router.viewsPath`](https://kitura.github.io/Kitura/Classes/Router.html#/s:6Kitura6RouterC9viewsPathSSvp) property.
     ///
     /// - Parameter rootPaths: The paths to be searched for Stencil templates.
     public func setRootPaths(rootPaths: [String]) {
@@ -107,7 +107,7 @@ public class StencilTemplateEngine: TemplateEngine {
 
     /// Take a template file and a set of "variables" in the form of a context
     /// and generate content to be sent back to the client.
-    /// Note that this function is called by Kitura when you call [`response.render(_:context:options:)`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF).
+    /// Note that this function is called by Kitura when you call [`response.render(_:context:options:)`](https://kitura.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_s10DictionaryVySSypG7context0A14TemplateEngine16RenderingOptions_p7optionstKF).
     ///
     /// - Parameter filePath: The path of the template file to use when generating
     ///                      the content.
@@ -134,7 +134,7 @@ public class StencilTemplateEngine: TemplateEngine {
     }
 
     /// Take a template file and an `Encodable` type and generate the content to be sent back to the client.
-    /// Note that this function is called by Kitura when you call [`response.render(_:with:forKey:options:)`](https://ibm-swift.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_x4withSSSg6forKey0A14TemplateEngine16RenderingOptions_p7optionstKs9EncodableRzlF).
+    /// Note that this function is called by Kitura when you call [`response.render(_:with:forKey:options:)`](https://kitura.github.io/Kitura/Classes/RouterResponse.html#/s:6Kitura14RouterResponseC6renderACSS_x4withSSSg6forKey0A14TemplateEngine16RenderingOptions_p7optionstKs9EncodableRzlF).
     ///
     /// - Parameter filePath: The path of the template file to use when generating
     ///                      the content.

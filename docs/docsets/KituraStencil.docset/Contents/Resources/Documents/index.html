@@ -32,7 +32,7 @@
       </p>
     
         <p class="header-col header-col--secondary">
-          <a class="header-link" href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/">
+          <a class="header-link" href="https://github.com/Kitura/Kitura-StencilTemplateEngine/">
             <img class="header-icon" src="img/gh.png"/>
             View on GitHub
           </a>
@@ -70,20 +70,20 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             
             <p align="center">
-<a href="http://kitura.io/">
-<img src="https://raw.githubusercontent.com/IBM-Swift/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
+<a href="http://kitura.dev/">
+<img src="https://raw.githubusercontent.com/Kitura/Kitura/master/Sources/Kitura/resources/kitura-bird.svg?sanitize=true" height="100" alt="Kitura">
 </a>
 </p>
 
 <p align="center">
-    <a href="https://ibm-swift.github.io/Kitura-StencilTemplateEngine/index.html">
+    <a href="https://kitura.github.io/Kitura-StencilTemplateEngine/index.html">
     <img src="https://img.shields.io/badge/apidoc-KituraStencilTemplateEngine-1FBCE4.svg?style=flat" alt="APIDoc">
     </a>
-    <a href="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine">
-    <img src="https://travis-ci.org/IBM-Swift/Kitura-StencilTemplateEngine.svg?branch=master" alt="Build Status - Master">
+    <a href="https://travis-ci.org/Kitura/Kitura-StencilTemplateEngine">
+    <img src="https://travis-ci.org/Kitura/Kitura-StencilTemplateEngine.svg?branch=master" alt="Build Status - Master">
     </a>
     <img src="https://img.shields.io/badge/os-macOS-green.svg?style=flat" alt="macOS">
     <img src="https://img.shields.io/badge/os-linux-green.svg?style=flat" alt="Linux">
@@ -94,7 +94,7 @@
 </p>
 <h1 id='kitura-stenciltemplateengine' class='heading'>Kitura-StencilTemplateEngine</h1>
 
-<p>Kitura-StencilTemplateEngine is a plugin for <a href="https://github.com/IBM-Swift/Kitura-TemplateEngine.git">Kitura Template Engine</a> for using <a href="https://github.com/kylef/Stencil">Stencil</a> with the <a href="https://github.com/IBM-Swift/Kitura">Kitura</a> server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.</p>
+<p>Kitura-StencilTemplateEngine is a plugin for <a href="https://github.com/Kitura/Kitura-TemplateEngine.git">Kitura Template Engine</a> for using <a href="https://github.com/kylef/Stencil">Stencil</a> with the <a href="https://github.com/Kitura/Kitura">Kitura</a> server framework. This makes it easy to use Stencil templating, with a Kitura server, to create an HTML page with integrated Swift variables.</p>
 <h2 id='swift-version' class='heading'>Swift version</h2>
 
 <p>The latest version of Kitura-StencilTemplateEngine requires <strong>Swift 4.0</strong> or newer. You can download this version of the Swift binaries by following this <a href="https://swift.org/download/">link</a>. Compatibility with other Swift versions is not guaranteed.</p>
@@ -108,8 +108,8 @@
 <h2 id='usage' class='heading'>Usage</h2>
 <h4 id='add-dependencies' class='heading'>Add dependencies</h4>
 
-<p>Add the <code>Kitura-StencilTemplateEngine</code> package to the dependencies within your application’s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code>Kitura-StencilTemplateEngine</code> <a href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/releases">release</a>.</p>
-<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/IBM-Swift/Kitura-StencilTemplateEngine.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
+<p>Add the <code>Kitura-StencilTemplateEngine</code> package to the dependencies within your application’s <code>Package.swift</code> file. Substitute <code>&quot;x.x.x&quot;</code> with the latest <code>Kitura-StencilTemplateEngine</code> <a href="https://github.com/Kitura/Kitura-StencilTemplateEngine/releases">release</a>.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/Kitura/Kitura-StencilTemplateEngine.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"x.x.x"</span><span class="p">)</span>
 </code></pre>
 
 <p>Add <code>KituraStencil</code> to your target&rsquo;s dependencies:</p>
@@ -140,7 +140,7 @@
 <p>Add the dependencies to your Package.swift file (as defined in <a href="#add_dependencies">Add dependencies</a> above).</p>
 <h4 id='application-swift' class='heading'>Application.swift</h4>
 
-<p>Inside the <code>Application.swift</code> file, add the following code to render the <code>Example.stencil</code> template file on the <q>/articles</q> route.</p>
+<p>Inside the <code>Application.swift</code> file, add the following code to render the <code>Example.stencil</code> template file on the &ldquo;/articles&rdquo; route.</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">KituraStencil</span>
 </code></pre>
 
@@ -150,7 +150,7 @@
 <span class="k">var</span> <span class="nv">context</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span><span class="p">:</span><span class="kt">Any</span><span class="p">]]]</span> <span class="o">=</span>
     <span class="p">[</span>
         <span class="s">"articles"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">[</span><span class="s">"title"</span> <span class="p">:</span> <span class="s">"Using Stencil with Swift"</span><span class="p">,</span> <span class="s">"author"</span> <span class="p">:</span> <span class="s">"IBM Swift"</span><span class="p">],</span>
+            <span class="p">[</span><span class="s">"title"</span> <span class="p">:</span> <span class="s">"Using Stencil with Swift"</span><span class="p">,</span> <span class="s">"author"</span> <span class="p">:</span> <span class="s">"Kitura"</span><span class="p">],</span>
             <span class="p">[</span><span class="s">"title"</span> <span class="p">:</span> <span class="s">"Server-Side Swift with Kitura"</span><span class="p">,</span> <span class="s">"author"</span> <span class="p">:</span> <span class="s">"Kitura"</span><span class="p">],</span>
         <span class="p">]</span>
     <span class="p">]</span>
@@ -176,13 +176,13 @@
 <p>Run the application and once the server is running, go to <a href="http://localhost:8080/articles">http://localhost:8080/articles</a> to view the rendered Stencil template.</p>
 <h2 id='api-documentation' class='heading'>API Documentation</h2>
 
-<p>For more information visit our <a href="https://ibm-swift.github.io/Kitura-StencilTemplateEngine/index.html">API reference</a>.</p>
+<p>For more information visit our <a href="https://kitura.github.io/Kitura-StencilTemplateEngine/index.html">API reference</a>.</p>
 <h2 id='community' class='heading'>Community</h2>
 
 <p>We love to talk server-side Swift, and Kitura. Join our <a href="http://swift-at-ibm-slack.mybluemix.net/">Slack</a> to meet the team!</p>
 <h2 id='license' class='heading'>License</h2>
 
-<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/IBM-Swift/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt">LICENSE</a>.</p>
+<p>This library is licensed under Apache 2.0. Full license text is available in <a href="https://github.com/Kitura/Kitura-StencilTemplateEngine/blob/master/LICENSE.txt">LICENSE</a>.</p>
 
           </div>
         </section>
@@ -191,8 +191,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">IBM</a>. All rights reserved. (Last updated: 2018-07-16)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external">IBM and the Kitura project authors</a>. All rights reserved. (Last updated: 2021-08-29)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

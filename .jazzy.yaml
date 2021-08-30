@@ -11,5 +11,3 @@ readme: README.md
 skip_undocumented: false
 hide_documentation_coverage: false
 
-xcodebuild_arguments: [-project, KituraStencil.xcodeproj, -target, KituraStencil, LIBRARY_SEARCH_PATHS=.build/debug]
-
